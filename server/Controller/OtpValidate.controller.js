@@ -1,8 +1,9 @@
 import User from "../Modles/User.modles.js";
 import UserOtp from "../Modles/UserOtp.modles.js";
-
+import { SendMail } from "../Utils/OtpSendEmail.Utils.js";
 const AddUsersOtp = async (req, res) => {
-    const { email, otp } = req.body;
+    const { email } = req.body;
+    let otp =  Math.floor(Math.random()*9000)+1000;
     if (!email || !otp) {
         return res.send("All field are mendetory");
     }
@@ -16,14 +17,16 @@ const AddUsersOtp = async (req, res) => {
 
         const checkUserOpt = await UserOtp.findOne({ email });
         if (checkUserOpt){
-            checkUserOpt.otp = req.body.otp;
+            checkUserOpt.otp = otp;
+            SendMail(email,otp)
             await checkUserOpt.save();
             return res.status(200).send("otp updated");
         }else{
             const newOptUser = new UserOtp({
                 email : req.body.email,
-                otp : req.body.otp
+                otp : otp
             })
+            SendMail(email,otp)
             await newOptUser.save();
             return res.status(200).send("email created");
         }
