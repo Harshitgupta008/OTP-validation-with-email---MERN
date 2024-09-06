@@ -4,9 +4,10 @@ import { AddUsersOtp  } from "../Controller/OtpValidate.controller.js";
 const route = express.Router();
 
 route.get("/check", CheckRoute);
-route.post("/Adduser", CreateUser);
-route.get("/AllUser", AllUsers);
+route.post("/adduser", CreateUser);
+route.get("/alluser", AllUsers);
 
-route.post("/OtpGenerate", AddUsersOtp);
+route.post("/otpgenerate", AddUsersOtp);
+route.post("/finduserbyotp", FindUserbyOtp);
 
 export default route;

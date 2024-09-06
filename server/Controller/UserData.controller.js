@@ -6,12 +6,13 @@ const CheckRoute = (req, res) => {
 
 const CreateUser = async (req, res) => {
     try {
-        const { email } = req.body;
-        if (!email) {
+        const { email, name } = req.body;
+        if (!email, !name) {
             return res.send("email are mendetory");
         }
         const response = new User({
             email: req.body.email,
+            name: req.body.name,
         })
         const check = await User.findOne({ email });
         if (check) {

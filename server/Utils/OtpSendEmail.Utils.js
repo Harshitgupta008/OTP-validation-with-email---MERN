@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-// Message from  Harshit if you want know more informaition check doc of nodemiller and enjoy 
+// Message from  Harshit :-  if you want know more informaition check doc of nodemiller and enjoy 
 // from for Sender Email
 // to for Reciver Eamil
 // html are not mendetory
